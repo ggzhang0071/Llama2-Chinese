@@ -26,7 +26,8 @@ RUN apt-get update && apt-get install -y \
     && make altinstall \
     && update-alternatives --install /usr/bin/python python /usr/local/bin/python3.10 1 \
     && update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.10 1 \
-    && rm -rf /tmp/Python-3.10.12.tar.xz /tmp/Python-3.10.12 \
+    && rm -rf /tmp/Python-3.10.12.tar.xz /tmp/Python-3.10.12 
+RUN apt-get update && apt-get install -y \
     && apt-get install -y git \
     && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash \
     && apt-get install -y git-lfs \
@@ -39,13 +40,13 @@ WORKDIR /root/Llama2-Chinese
 RUN git clone https://github.com/FlagAlpha/Llama2-Chinese.git /root/Llama2-Chinese 
 
 # 使用pip安装requirements.txt
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt  
 
 #克隆Hugging Face仓库
-RUN  git clone https://huggingface.co/FlagAlpha/Llama2-Chinese-7b-Chat
+#RUN  git clone https://huggingface.co/FlagAlpha/Llama2-Chinese-7b-Chat
 
 #开启7860端口
-EXPOSE 7860 
+#EXPOSE 7860 
 
 #设置启动命令
-ENTRYPOINT ["python", "examples/chat_gradio.py", "--model_name_or_path", "/root/Llama2-Chinese/Llama2-Chinese-7b-Chat/"]
+#ENTRYPOINT ["python", "examples/chat_gradio.py", "--model_name_or_path", "/root/Llama2-Chinese/Llama2-Chinese-7b-Chat/"]
